@@ -28,6 +28,10 @@ readme = "README.md"
 requires-python = "~=3.12.0"
 version = "0.0.0"
 
+# 🔧 REQUIRED FOR FLIT WHEN USING A PACKAGE DIRECTORY
+[tool.flit.module]
+name = "upvfab"
+
 [project.optional-dependencies]
 dev = [
   "pre-commit",
@@ -70,7 +74,6 @@ live_mode = true
 strict = true
 
 [tool.pytest.ini_options]
-# addopts = --tb=no
 addopts = '--tb=short'
 norecursedirs = ["extra/*.py"]
 python_files = ["upvfab/*.py", "notebooks/*.ipynb", "tests/*.py"]
@@ -100,12 +103,13 @@ select = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"upvfab/sin300/cband/cells/__init__.py" = ["F403"]  # allowing star imports to aggregate cells
-"upvfab/sin300/oband/cells/__init__.py" = ["F403"]  # allowing star imports to aggregate cells
+"upvfab/sin300/cband/cells/__init__.py" = ["F403"]
+"upvfab/sin300/oband/cells/__init__.py" = ["F403"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
+# (These setuptools sections are harmless but unused by Flit)
 [tool.setuptools.package-data]
 "*" = ["*.csv", "*.yaml", "*.yml", "*.gds", "*.lyp", "*.oas", "*.lyt", "*.dat", "*.nc", "*.svg"]
 
